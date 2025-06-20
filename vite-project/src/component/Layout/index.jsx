@@ -1,24 +1,24 @@
 // src/component/Layout/index.jsx
-      import React from 'react';
-        import './index.css'; // Assurez-vous que le fichier CSS est dans le même dossier
-      import Login from '../Login/index.jsx';
+import React from 'react';
+import './index.css'; // Assurez-vous que le fichier CSS est dans le même dossier
+import GamingBackground from "../GamingBackground/index.jsx";
 import NavBar from "../Navbar/index.jsx";
 import {Outlet} from "react-router";
 
 
       // Version React du composant Layout
-      function Layout() {
+      function Layout({withGamingBackground = false}) {
         return (
-          <div className="app-container">
-            <header className="app-header">
-             <NavBar/>
-            </header>
+          <div className="layout-container">
+              {withGamingBackground && <GamingBackground/>}
 
-            <main className="app-content">
-               <Outlet/>
+             <NavBar/>
+
+            <main className="content">
+                <Outlet/>
             </main>
 
-            <footer className="app-footer">
+            <footer className="footer">
               {/* Pied de page si nécessaire */}
             </footer>
           </div>

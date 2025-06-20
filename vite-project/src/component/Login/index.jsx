@@ -29,7 +29,9 @@ function Login() {
 
       if (response.ok) {
         alert(`Connexion réussie !\nToken : ${result.token}`);
+        await localStorage.setItem("token", result.token);
         navigate("/");
+        window.location.reload();
       } else {
         alert(result.message || "Erreur lors de la connexion");
       }
@@ -38,6 +40,7 @@ function Login() {
       console.error(err);
     }
   };
+//todo : Ajouter le rafraîchissement de la page après la connexion réussie Afin d'avoir le bouton de déconnexion
 
 
   // Utilisez le style en ligne pour l'image de fond
