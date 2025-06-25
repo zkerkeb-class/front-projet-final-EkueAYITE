@@ -1,4 +1,4 @@
-// src/component/Layout/index.jsx
+// src/component/Layout/index.css.jsx
 import React from 'react';
 import './index.css'; // Assurez-vous que le fichier CSS est dans le même dossier
 import GamingBackground from "../GamingBackground/index.jsx";

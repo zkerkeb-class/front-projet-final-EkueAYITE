@@ -1,4 +1,4 @@
-// src/component/Login/index.jsx
+// src/component/Login/index.css.jsx
 import React from 'react';
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import backgroundImage from '../../assets/fond/bg.jpg'; // Assurez-vous que le chemin est correct

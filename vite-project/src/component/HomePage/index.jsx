@@ -46,7 +46,6 @@ const HomePage = () => {
             })
             .catch(error => {
                 console.log('error', error);
-                localStorage.removeItem("token");
                 navigate("/login");
                 setIsLoading(false);
             });

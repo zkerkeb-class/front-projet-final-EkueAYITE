@@ -1,7 +1,7 @@
-// src/component/Navbar/index.jsx
+// src/component/Navbar/index.css.jsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./index.css"; // Changé de NavBar.css à index.css pour suivre votre convention de nommage
+import "./index.css"; // Changé de NavBar.css à index.css.css pour suivre votre convention de nommage
 import { useNavigate } from "react-router-dom";
 
       function NavBar() {

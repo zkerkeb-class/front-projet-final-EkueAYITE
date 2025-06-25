@@ -2,12 +2,14 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 
-//import HomePage from "../component/HomePage";
 import Login from "../component/Login";
 import Register from "../component/Register";
 import Layout from "../component/Layout";
 import HomePage from "../component/HomePage/index.jsx";
-//import PokemonDetailPage from "../screens/PokemonDetailPage";
+import SoloGames from "../component/SoloGames/index.jsx";
+import MultiPlayerGames from "../component/MultiPGames/index.jsx";
+import GameDetail from "../component/GameDetail/index.jsx";
+
 
 let router = createBrowserRouter([
         {
@@ -29,6 +31,14 @@ let router = createBrowserRouter([
                 {
                   path:"/games/solo",
                   element:<SoloGames/>
+                },
+                {
+                    path:"/games/multi",
+                    element:<MultiPlayerGames/>
+                },
+                {
+                    path:"/games/player/:id",
+                    element: <GameDetail/>
                 }
             ]
         }

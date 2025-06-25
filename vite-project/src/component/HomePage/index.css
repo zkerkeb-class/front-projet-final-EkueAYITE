@@ -1,7 +1,6 @@
 html, body, #root {
     height: 100%;
-    margin: 0;
-    padding: 0;
+
     overflow: hidden; /* facultatif selon effet voulu */
 }
 
@@ -74,4 +73,24 @@ body {
 
 .game-type-card:hover .game-type-overlay {
     transform: translateY(0);
+}
+.games-container {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .games-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .games-container {
+        grid-template-columns: 1fr;
+    }
 }
