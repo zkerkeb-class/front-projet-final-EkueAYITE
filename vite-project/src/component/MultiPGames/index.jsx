@@ -13,7 +13,7 @@ import './index.css';
                 const [error, setError] = useState(null);
 
                 useEffect(() => {
-                    fetch("http://localhost:3000/api/games", {
+                    fetch("http://localhost:3000/api/games/multiplayer", {
                         method: "GET",
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -46,15 +46,16 @@ import './index.css';
                 if (loading) {
                     return <p>Chargement des jeux multijoueur...</p>;
                 }
-
+                console.log(visibleGames)
                 return (
                     <div className="games-scroll-wrapper">
                         <h2>Jeux Multijoueur</h2>
                         <div className="games-container">
                             {visibleGames.map((game) => (
-                                <div  key={game.gameID}
+
+                                <div  key={game._id}
                                       className="game-card"
-                                      onClick={() => navigate(`/games/player/${game.gameID}`)}
+                                      onClick={() => navigate(`/games/player/${game._id}`)}
                                       style={{ cursor: 'pointer' }}
                                 >
                                     <img src={game.thumb} alt={game.title} className="game-img" />

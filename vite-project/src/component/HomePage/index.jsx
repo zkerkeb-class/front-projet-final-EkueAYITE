@@ -61,11 +61,11 @@ const HomePage = () => {
         {isAuthenticated && (
             <div className="games-type-container">
                 <Link to="/games/solo" className="charater-link" >
-                    <img src="https://assets.codepen.io/1480814/goku-_1.png" alt="Jeux Solo"/>
+                    <img src="/img/Gemini_Generated_Image_xgc2daxgc2daxgc2.png" alt="Jeux Solo"/>
                 </Link>
 
                 <Link to="/games/multi" className="character-link">
-                    <img src="https://assets.codepen.io/1480814/veg-.png" alt="Jeux Multijoueur" />
+                    <img src="/img/Copy_of_Your_paragraph_text_25.png" alt="Jeux Multijoueur" />
                 </Link>
             </div>
         )}

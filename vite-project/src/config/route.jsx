@@ -9,6 +9,7 @@ import HomePage from "../component/HomePage/index.jsx";
 import SoloGames from "../component/SoloGames/index.jsx";
 import MultiPlayerGames from "../component/MultiPGames/index.jsx";
 import GameDetail from "../component/GameDetail/index.jsx";
+import TrackedGamesList from "../component/TrakedGamesList/index.jsx";
 
 
 let router = createBrowserRouter([
@@ -39,22 +40,14 @@ let router = createBrowserRouter([
                 {
                     path:"/games/player/:id",
                     element: <GameDetail/>
-                }
-            ]
-        }
-       /* {
-            Component: Layout,
-            children: [
-                {
-                    path: "/pokemon",
-                    Component: PokemonPage,
                 },
                 {
-                    path: "/pokemon/:id",
-                    Component: PokemonDetailPage,
+                    path: "/my-tracked-games",
+                    element: <TrackedGamesList />
                 }
+
             ]
-        }*/
+        }
     ]
 
 );

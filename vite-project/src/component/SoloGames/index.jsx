@@ -10,6 +10,7 @@ const SoloGames = () => {
     const [loading, setLoading] = useState(true);
     const GAMES_PER_PAGE = 9;
 
+
     useEffect(() => {
         fetch("http://localhost:3000/api/games/singleplayer", {
             method: "GET",
@@ -48,9 +49,10 @@ const SoloGames = () => {
                 {visibleGames.map((game) => (
                     <div  key={game.gameID}
                           className="game-card"
-                          onClick={() => navigate(`/games/player/${game.gameID}`)}
+                          onClick={() => navigate(`/games/player/${game._id}`)}
                           style={{ cursor: 'pointer' }}
                     >
+
                         <img src={game.thumb} alt={game.title} className="game-img" />
                         <div className="game-card-content">
                             <h3>{game.title}</h3>
