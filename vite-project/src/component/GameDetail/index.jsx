@@ -46,7 +46,7 @@ const GameDetail = () => {
             .then((data) => {
                 setGame(data);
                 // Mise à jour explicite de hasPlayed avec une valeur booléenne
-                setHasPlayed(Boolean(data.hasPlayed));
+                setHasPlayed(!!data.hasPlayed);
                 setDifficulty(data.difficulty || null);
                 setGameProgress(data.gameProgress || null);
                 setGameLevel(data.gameLevel || 1);
@@ -65,10 +65,10 @@ const GameDetail = () => {
             gameProgress,
             gameLevel,
             completionPercentage,
-            hasPlayed: Boolean(hasPlayed) // S'assurer que c'est un booléen
+            hasPlayed: hasPlayed === true // S'assurer que c'est un booléen
         };
 
-        fetch(`http://localhost:3000/api/games/traking/${id}`, {
+        fetch(`http://localhost:3000/api/games/update/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -120,7 +120,7 @@ const GameDetail = () => {
                         <input
                             type="checkbox"
                             id="hasPlayed"
-                            checked={hasPlayed === true} // Comparaison explicite
+                            checked={hasPlayed === true} // Comparaison explicite stricte
                             onChange={(e) => handleHasPlayedChange(e.target.checked)}
                             className="checkbox-input"
                         />
