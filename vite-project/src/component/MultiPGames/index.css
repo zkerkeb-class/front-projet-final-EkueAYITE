@@ -1,0 +1,134 @@
+/* General body styling for a dark gaming theme */
+body {
+  background-color: #1a1a2e; /* Dark background */
+  color: #e0e0e0; /* Light text for contrast */
+  font-family: 'Press Start 2P', cursive, Arial, sans-serif; /* Pixel-style font or a bold, modern gaming font */
+  margin: 0;
+  padding: 0;
+}
+
+/* Import a pixel font from Google Fonts if you want a retro look */
+/* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
+
+
+.games-scroll-wrapper {
+  padding: 40px 20px; /* More padding for spacious feel */
+  /* Slightly lighter dark background for the wrapper */
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 1400px; /* Wider container */
+}
+
+.games-scroll-wrapper h2 {
+  text-align: center;
+  color: #dfd9d9; /* Darker blue for headings */
+  margin-bottom: 50px;
+  font-size: 3em; /* Larger heading */
+  text-transform: uppercase; /* Uppercase for a gaming feel */
+  letter-spacing: 3px; /* Spacing between letters */
+  text-shadow: 0 0 15px rgb(77, 94, 188); /* Neon glow effect */
+}
+
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider cards */
+  gap: 30px; /* More space between cards */
+  justify-content: center;
+}
+
+.game-card {
+  background-color: #0f3460; /* Dark blue background for cards */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  cursor: pointer;
+  border: 2px solid transparent; /* Start with transparent border */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game-card:hover {
+  transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3); /* Enhanced glow on hover */
+  border-color: #00ffff; /* Neon border on hover */
+}
+
+.game-img {
+  width: 100%;
+  height: 220px; /* Taller images */
+  object-fit: cover;
+  border-bottom: 3px solid #0f4c75; /* Stronger border at the bottom of the image */
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-img {
+  transform: scale(1.05); /* Slight zoom on image hover */
+}
+
+.game-card-content {
+  padding: 25px; /* More padding inside content */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-card-content h3 {
+  font-size: 1.8em; /* Larger title */
+  color: #4d5ebc;
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgb(23, 22, 22); /* Orange glow for titles */
+  white-space: normal; /* Allow title to wrap */
+  overflow: visible; /* Prevent truncation if it wraps */
+}
+
+.game-card-content p {
+  font-size: 1.05em; /* Slightly larger text */
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: #b0b0b0; /* Lighter grey for general text */
+}
+
+.game-card-content p strong {
+  color: #e0e0e0; /* White for strong text */
+}
+
+.btn {
+  display: block;
+  width: fit-content;
+  margin: 40px auto 0 auto; /* More margin */
+  padding: 15px 35px; /* Larger button */
+  background-color: #e94560; /* Reddish-pink for primary action */
+  color: #ffffff;
+  border: none;
+  border-radius: 10px; /* More rounded button */
+  font-size: 1.2em; /* Larger font on button */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4); /* Reddish shadow */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  background-color: #ff7f50; /* Lighter orange on hover */
+  transform: translateY(-3px) scale(1.02); /* More pronounced lift */
+  box-shadow: 0 8px 20px rgba(255, 127, 80, 0.6); /* Enhanced hover shadow */
+}
+
+.btn:active {
+  background-color: #d13a53; /* Darker red on active */
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading and error messages */
+p {
+  text-align: center;
+  color: #00ffff; /* Cyan for loading/error messages */
+  font-size: 1.5em;
+  margin-top: 50px;
+}

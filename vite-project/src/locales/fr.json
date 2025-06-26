@@ -1,0 +1,71 @@
+{
+  "general": {
+    "gameTitle": "Titre du jeu",
+    "appName": "GameHub",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "success": "Succès !",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "games": "Jeux",
+    "profile": "Profil",
+    "about": "À propos",
+    "contact": "Contact",
+    "dashboard": "Tableau de bord"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "confirmPassword": "Confirmer le mot de passe",
+    "username": "Nom d’utilisateur"
+  },
+  "games": {
+    "allGames": "Tous les jeux",
+    "popular": "Jeux populaires",
+    "new": "Nouveautés",
+    "search": "Rechercher des jeux",
+    "difficulty": "Difficulté",
+    "easy": "Facile",
+    "medium": "Moyenne",
+    "hard": "Difficile",
+    "gameProgress": "Progression du jeu",
+    "gameLevel": "Niveau",
+    "completionPercentage": "Pourcentage d’achèvement",
+    "startGame": "Démarrer le jeu",
+    "continueGame": "Continuer",
+    "saveButton": "Enregistrer les informations",
+    "inProgress": "En cours",
+    "completed": "Terminé",
+    "notStarted": "Non commencé"
+  },
+  "profile": {
+    "settings": "Paramètres",
+    "achievements": "Réalisations",
+    "statistics": "Statistiques",
+    "favorites": "Favoris",
+    "history": "Historique de jeu"
+  },
+  "errors": {
+    "serverError": "Erreur serveur",
+    "notFound": "Introuvable",
+    "invalidInput": "Entrée invalide",
+    "unauthorized": "Accès non autorisé"
+  },
+  "language": "Langue",
+  "home": "Accueil",
+  "myTrackedGames": "Mes jeux suivis",
+  "login": "Connexion",
+  "register": "Inscription",
+  "logout": "Déconnexion"
+
+}

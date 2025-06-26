@@ -1,0 +1,73 @@
+{
+  "general": {
+    "gameTitle": "Game Title",
+    "appName": "GameHub",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "navigation": {
+    "home": "Home",
+    "games": "Games",
+    "profile": "Profile",
+    "about": "About",
+    "contact": "Contact",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "confirmPassword": "Confirm Password",
+    "username": "Username"
+  },
+  "games": {
+    "allGames": "All Games",
+    "popular": "Popular Games",
+    "new": "New Releases",
+    "search": "Search Games",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "gameProgress": "Game Progress",
+    "gameLevel": "Level",
+    "completionPercentage": "Completion",
+    "startGame": "Start Game",
+    "continueGame": "Continue",
+    "saveButton": "Save Information",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "notStarted": "Not Started"
+  },
+  "profile": {
+    "settings": "Settings",
+    "achievements": "Achievements",
+    "statistics": "Statistics",
+    "favorites": "Favorites",
+    "history": "Game History"
+  },
+
+  "errors": {
+    "serverError": "Server Error",
+    "notFound": "Not Found",
+    "invalidInput": "Invalid Input",
+    "unauthorized": "Unauthorized Access"
+  },
+
+  "language": "Language",
+  "home": "Home",
+  "myTrackedGames": "My Tracked Games",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout"
+
+}
