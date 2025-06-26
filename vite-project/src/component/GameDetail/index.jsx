@@ -140,7 +140,7 @@ const GameDetail = () => {
                 </div>
 
                 {/* Affichage conditionnel uniquement si hasPlayed est true */}
-                {hasPlayed === true && game.isSinglePlayer && (
+                {hasPlayed === true (
                     <div className="single-player-section">
                         <div className="checkbox-container">
                             <h3 className="percentage-label" style={{ color: '#ff6b9d' }}>Niveau de difficulté</h3>
@@ -231,7 +231,7 @@ const GameDetail = () => {
                     </div>
                 )}
 
-                {hasPlayed === true && game.isMultiplayer && (
+                {hasPlayed === true (
                     <div className="multiplayer-section">
                         <div className="percentage-container visible">
                             <div className="percentage-content">
