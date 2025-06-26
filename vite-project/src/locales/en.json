@@ -55,10 +55,19 @@
     "favorites": "Favorites",
     "history": "Game History"
   },
+
   "errors": {
     "serverError": "Server Error",
     "notFound": "Not Found",
     "invalidInput": "Invalid Input",
     "unauthorized": "Unauthorized Access"
-  }
+  },
+
+  "language": "Language",
+  "home": "Home",
+  "myTrackedGames": "My Tracked Games",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout"
+
 }

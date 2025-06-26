@@ -1,96 +1,97 @@
-// src/component/Login/index.css.jsx
-import React from 'react';
-import {Link, Navigate, useNavigate} from "react-router-dom";
-import backgroundImage from '../../assets/fond/bg.jpg'; // Assurez-vous que le chemin est correct
-import './index.css'; // Assurez-vous que le fichier CSS est dans le même dossier
-import {useState, useEffect} from 'react';
-import 'boxicons/css/boxicons.min.css';
+// vite-project/src/component/Login/index.jsx
+  import React, { useState } from 'react';
+  import { Link, useNavigate } from 'react-router-dom';
+  import { useTranslation } from 'react-i18next';
+  import backgroundImage from '../../assets/fond/bg.jpg';
+  import 'boxicons/css/boxicons.min.css';
+  import './index.css';
 
+  function Login() {
+    const { t } = useTranslation();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const navigate = useNavigate();
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert(`Connexion réussie !\nToken : ${result.token}`);
-        await localStorage.setItem("token", result.token);
-        navigate("/");
-        window.location.reload();
-      } else {
-        alert(result.message || "Erreur lors de la connexion");
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const result = await response.json();
+        if (response.ok) {
+          alert(t('login.success', { token: result.token }));
+          localStorage.setItem('token', result.token);
+          navigate('/');
+          window.location.reload();
+        } else {
+          alert(result.message || t('login.error'));
+        }
+      } catch (err) {
+        alert(t('login.networkError'));
+        console.error(err);
       }
-    } catch (err) {
-      alert("Erreur réseau");
-      console.error(err);
-    }
-  };
-//todo : Ajouter le rafraîchissement de la page après la connexion réussie Afin d'avoir le bouton de déconnexion
+    };
 
+    return (
+      <div
+        className="login-container"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
+        <div className="wrapper">
+          <form onSubmit={handleSubmit}>
+            <h1>{t('login.title')}</h1>
 
-  // Utilisez le style en ligne pour l'image de fond
-
-
-  return (
-
-      <div className="login-container">
-      <div className="wrapper">
-        <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
-          <div className="input-box">
-            <input
+            <div className="input-box">
+              <input
                 type="text"
-                placeholder="Username"
+                placeholder={t('login.usernamePlaceholder')}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-            />
-            <i className='bx bxs-user'></i>
-          </div>
-          <div className="input-box">
-            <input
+              />
+              <i className='bx bxs-user'></i>
+            </div>
+
+            <div className="input-box">
+              <input
                 type="password"
-                placeholder="Password"
+                placeholder={t('login.passwordPlaceholder')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-            />
-            <i className='bx bxs-lock-alt'></i>
-          </div>
-          <div className="remember-forgot">
-            <label>
-              <input
+              />
+              <i className='bx bxs-lock-alt'></i>
+            </div>
+
+            <div className="remember-forgot">
+              <label>
+                <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-              />
-              Remember me
-            </label>
-            <a href="#">Forgot password?</a>
-          </div>
-            <button type="submit" className="btn">Login</button>
+                />
+                {t('login.rememberMe')}
+              </label>
+              <a href="#">{t('login.forgotPassword')}</a>
+            </div>
+
+            <button type="submit" className="btn">
+              {t('login.submit')}
+            </button>
+
             <div className="register-link">
-              <p>Already have an account? <Link to="/register">Register</Link></p>
+              <p>
+                {t('login.noAccount')} <Link to="/register">{t('login.register')}</Link>
+              </p>
             </div>
           </form>
         </div>
-  </div>
-  );
-}
+      </div>
+    );
+  }
 
-export default Login;
+  export default Login;

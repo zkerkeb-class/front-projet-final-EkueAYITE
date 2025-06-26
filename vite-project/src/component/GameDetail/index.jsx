@@ -1,31 +1,23 @@
-import React, { useEffect, useState} from "react";
-import { useParams, useNavigate  } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./index.css";
 
 const GameDetail = () => {
     const { id } = useParams();
+    const [isSinglePlayer, setIsSinglePlayer] = useState(false);
+    const [isMultiplayer, setIsMultiplayer] = useState(false);
     const [game, setGame] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
-    // Debug pour vérifier l'ID
-    console.log("ID from useParams:", id);
-    console.log("Type of ID:", typeof id);
-
-    // États communs - Initialisation à null pour éviter les faux positifs
     const [hasPlayed, setHasPlayed] = useState(null);
-
-    // États pour les jeux solo
     const [difficulty, setDifficulty] = useState(null);
     const [gameProgress, setGameProgress] = useState(null);
     const [gameLevel, setGameLevel] = useState(1);
-
-    // États pour les jeux multijoueur
     const [completionPercentage, setCompletionPercentage] = useState(0);
 
     useEffect(() => {
-        // Vérifier que l'ID existe avant de faire le fetch
         if (!id) {
             setError("ID du jeu manquant");
             setLoading(false);
@@ -45,13 +37,17 @@ const GameDetail = () => {
             })
             .then((data) => {
                 setGame(data);
-                // Mise à jour explicite de hasPlayed avec une valeur booléenne
-                setHasPlayed(Boolean(data.hasPlayed));
+             //   setHasPlayed(Boolean(data.hasPlayed));
                 setDifficulty(data.difficulty || null);
                 setGameProgress(data.gameProgress || null);
                 setGameLevel(data.gameLevel || 1);
                 setCompletionPercentage(data.completionPercentage || 0);
                 setLoading(false);
+                setIsSinglePlayer(data.game.isSinglePlayer)
+                setIsMultiplayer(data.game.isMultiplayer);
+                console.log(isSinglePlayer);
+                console.log(isMultiplayer);
+                console.log('Data reçue:', data);
             })
             .catch((err) => {
                 setError(err.message);
@@ -65,16 +61,16 @@ const GameDetail = () => {
             gameProgress,
             gameLevel,
             completionPercentage,
-            hasPlayed: Boolean(hasPlayed) // S'assurer que c'est un booléen
+            hasPlayed: Boolean(hasPlayed),
         };
 
-        fetch(`http://localhost:3000/api/games/traking/${id}`, {
+        fetch(`http://localhost:3000/api/games/update/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-            body: JSON.stringify(updatedData)
+            body: JSON.stringify(updatedData),
         })
             .then((res) => {
                 if (!res.ok) {
@@ -90,11 +86,9 @@ const GameDetail = () => {
             });
     };
 
-    // Gestion du changement de hasPlayed avec réinitialisation des autres états
     const handleHasPlayedChange = (checked) => {
         setHasPlayed(checked);
 
-        // Réinitialiser les autres états quand on décoche "Déjà joué"
         if (!checked) {
             setDifficulty(null);
             setGameProgress(null);
@@ -102,10 +96,10 @@ const GameDetail = () => {
             setCompletionPercentage(0);
         }
     };
+
     const handleGoToTracking = () => {
         navigate(`/my-tracked-games`);
     };
-
 
     if (loading) return <p>Chargement...</p>;
     if (error) return <p>Erreur: {error}</p>;
@@ -120,32 +114,31 @@ const GameDetail = () => {
                         <input
                             type="checkbox"
                             id="hasPlayed"
-                            checked={hasPlayed === true} // Comparaison explicite
+                            checked={hasPlayed === true}
                             onChange={(e) => handleHasPlayedChange(e.target.checked)}
                             className="checkbox-input"
                         />
                         <label htmlFor="hasPlayed" className="checkbox-label">
-                            <div className={`checkbox-box ${hasPlayed ? 'checked' : ''}`}>
+                            <div className={`checkbox-box ${hasPlayed ? "checked" : ""}`}>
                                 {hasPlayed && (
                                     <svg className="checkmark" viewBox="0 0 24 24">
                                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                     </svg>
                                 )}
                             </div>
-                            <span className={`checkbox-text ${hasPlayed ? 'completed-text' : ''}`}>
-                                Déjà joué ?
-                            </span>
+                            <span className={`checkbox-text ${hasPlayed ? "completed-text" : ""}`}>
+                Déjà joué ?
+              </span>
                         </label>
                     </div>
                 </div>
 
-                {/* Affichage conditionnel uniquement si hasPlayed est true */}
-                {hasPlayed === true && game.isSinglePlayer && (
+                {hasPlayed && isSinglePlayer &&(
                     <div className="single-player-section">
                         <div className="checkbox-container">
-                            <h3 className="percentage-label" style={{ color: '#ff6b9d' }}>Niveau de difficulté</h3>
-                            <div className="radio-group" style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                                {['easy', 'medium', 'hard'].map((level) => (
+                            <h3 className="percentage-label" style={{ color: "#ff6b9d" }}>Niveau de difficulté</h3>
+                            <div className="radio-group" style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                                {["easy", "medium", "hard"].map((level) => (
                                     <div key={level} className="custom-checkbox" style={{ flex: 1 }}>
                                         <input
                                             type="radio"
@@ -157,15 +150,15 @@ const GameDetail = () => {
                                             className="checkbox-input"
                                         />
                                         <label htmlFor={level} className="checkbox-label">
-                                            <div className={`checkbox-box ${difficulty === level ? 'checked' : ''}`}
-                                                 style={{ borderRadius: '50%' }}>
-                                                {difficulty === level && (
-                                                    <span className="checkmark">✓</span>
-                                                )}
+                                            <div
+                                                className={`checkbox-box ${difficulty === level ? "checked" : ""}`}
+                                                style={{ borderRadius: "50%" }}
+                                            >
+                                                {difficulty === level && <span className="checkmark">✓</span>}
                                             </div>
-                                            <span className={`checkbox-text ${difficulty === level ? 'completed-text' : ''}`}>
-                                                {level === 'easy' ? 'Facile' : level === 'medium' ? 'Moyen' : 'Difficile'}
-                                            </span>
+                                            <span className={`checkbox-text ${difficulty === level ? "completed-text" : ""}`}>
+                        {level === "easy" ? "Facile" : level === "medium" ? "Moyen" : "Difficile"}
+                      </span>
                                         </label>
                                     </div>
                                 ))}
@@ -173,9 +166,12 @@ const GameDetail = () => {
                         </div>
 
                         <div className="checkbox-container">
-                            <h3 className="percentage-label" style={{ color: '#8b45ff' }}>Progression</h3>
-                            <div className="radio-group" style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                                {[{ id: 'in-progress', label: 'En cours' }, { id: 'completed', label: 'Jeu terminé' }].map((option) => (
+                            <h3 className="percentage-label" style={{ color: "#8b45ff" }}>Progression</h3>
+                            <div className="radio-group" style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+                                {[
+                                    { id: "in-progress", label: "En cours" },
+                                    { id: "completed", label: "Jeu terminé" },
+                                ].map((option) => (
                                     <div key={option.id} className="custom-checkbox" style={{ flex: 1 }}>
                                         <input
                                             type="radio"
@@ -187,15 +183,15 @@ const GameDetail = () => {
                                             className="checkbox-input"
                                         />
                                         <label htmlFor={option.id} className="checkbox-label">
-                                            <div className={`checkbox-box ${gameProgress === option.id ? 'checked' : ''}`}
-                                                 style={{ borderRadius: '50%' }}>
-                                                {gameProgress === option.id && (
-                                                    <span className="checkmark">✓</span>
-                                                )}
+                                            <div
+                                                className={`checkbox-box ${gameProgress === option.id ? "checked" : ""}`}
+                                                style={{ borderRadius: "50%" }}
+                                            >
+                                                {gameProgress === option.id && <span className="checkmark">✓</span>}
                                             </div>
-                                            <span className={`checkbox-text ${gameProgress === option.id ? 'completed-text' : ''}`}>
-                                                {option.label}
-                                            </span>
+                                            <span className={`checkbox-text ${gameProgress === option.id ? "completed-text" : ""}`}>
+                        {option.label}
+                      </span>
                                         </label>
                                     </div>
                                 ))}
@@ -231,7 +227,7 @@ const GameDetail = () => {
                     </div>
                 )}
 
-                {hasPlayed === true && game.isMultiplayer && (
+                {hasPlayed && isMultiplayer && (
                     <div className="multiplayer-section">
                         <div className="percentage-container visible">
                             <div className="percentage-content">
@@ -264,8 +260,8 @@ const GameDetail = () => {
                         <button onClick={handleSave} className="save-button" type="button">
                             <span className="button-text">Sauvegarder les informations</span>
                         </button>
-                        <br/>
-                        <br/>
+                        <br />
+                        <br />
                         <button onClick={handleGoToTracking} className="save-button" type="button">
                             <span className="button-text">Voir le suivi</span>
                         </button>
